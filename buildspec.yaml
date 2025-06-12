@@ -7,8 +7,8 @@ phases:
       - pytest tests/
       - VERSION=$CODEBUILD_BUILD_NUMBER
       - SCRIPT_KEY=scripts/job-${VERSION}.py
-      - aws s3 cp etl_job.py s3://surajb-bucket202506/${SCRIPT_KEY}
-      - echo "{\"ScriptLocation\": \"s3://surajb-bucket202506/${SCRIPT_KEY}\"}" > artifact.json
+      - aws s3 cp etl_job.py s3://surajb-bucket202506/${CODEBUILD_BUILD_NUMBER}
+      - echo "{\"ScriptLocation\": \"s3://surajb-bucket202506/${CODEBUILD_BUILD_NUMBER}\"}" > artifact.json
 artifacts:
   files:
     - artifact.json
