@@ -1,0 +1,17 @@
+---
+Description: "AWS Glue Job Test"
+Resources:
+  GlueJob5:
+    Type: AWS::Glue::Job
+    Properties:
+      Command:
+        Name: S3ReadWriteScript
+        ScriptLocation: "s3://surajb-bucket202506/scripts/AwsGlueJobReadWriteS3.py"
+      DefaultArguments:
+        "--job-bookmark-option": "job-bookmark-enable"
+        "--job-language": "python"
+      ExecutionProperty:
+        MaxConcurrentRuns: 2
+      MaxRetries: 0
+      Name: CF-GlueJob-SurajBabar06
+      Role: "arn:aws:iam::430118834478:role/nishant-training-glue-role"
