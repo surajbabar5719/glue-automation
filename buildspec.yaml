@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - pip install pytest
+      - pytest tests/
+      - VERSION=$CODEBUILD_BUILD_NUMBER
+      - SCRIPT_KEY=scripts/job-${VERSION}.py
+      - aws s3 cp etl_job.py s3://surajb-bucket202506/${SCRIPT_KEY}
+      - echo "{\"ScriptLocation\": \"s3://surajb-bucket202506/${SCRIPT_KEY}\"}" > artifact.json
+artifacts:
+  files:
+    - artifact.json
